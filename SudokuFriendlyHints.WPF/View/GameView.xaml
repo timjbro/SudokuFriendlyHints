@@ -1,0 +1,190 @@
+﻿<UserControl x:Class="SudokuFriendlyHints.WPF.View.Game"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SudokuFriendlyHints.WPF.View"
+             mc:Ignorable="d" 
+             Background="White"
+             KeyUp="UserControl_PreviewKeyUp"
+             d:DesignHeight="800" d:DesignWidth="800">
+    <UserControl.Resources>
+        <GridLength x:Key="ButtonSize">50</GridLength>
+        <GridLength x:Key="MinorColumnDividers">2</GridLength>
+        <GridLength x:Key="MajorColumnDividers">3</GridLength>
+        <Style x:Key="MinorGridLine" TargetType="Rectangle">
+            <Setter Property="Fill" Value="Gray" />
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+        </Style>
+        <Style x:Key="MajorGridLine" TargetType="Rectangle">
+            <Setter Property="Fill" Value="Black" />
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        
+        <!-- Game -->
+        <Grid Margin="20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="{StaticResource ButtonSize}" />
+                <ColumnDefinition Width="{StaticResource MinorColumnDividers}" />
+                <ColumnDefinition Width="{StaticResource ButtonSize}" />
+                <ColumnDefinition Width="{StaticResource MinorColumnDividers}" />
+                <ColumnDefinition Width="{StaticResource ButtonSize}" />
+                <ColumnDefinition Width="{StaticResource MajorColumnDividers}" />
+                <ColumnDefinition Width="{StaticResource ButtonSize}" />
+                <ColumnDefinition Width="{StaticResource MinorColumnDividers}" />
+                <ColumnDefinition Width="{StaticResource ButtonSize}" />
+                <ColumnDefinition Width="{StaticResource MinorColumnDividers}" />
+                <ColumnDefinition Width="{StaticResource ButtonSize}" />
+                <ColumnDefinition Width="{StaticResource MajorColumnDividers}" />
+                <ColumnDefinition Width="{StaticResource ButtonSize}" />
+                <ColumnDefinition Width="{StaticResource MinorColumnDividers}" />
+                <ColumnDefinition Width="{StaticResource ButtonSize}" />
+                <ColumnDefinition Width="{StaticResource MinorColumnDividers}" />
+                <ColumnDefinition Width="{StaticResource ButtonSize}" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="{StaticResource ButtonSize}" />
+                <RowDefinition Height="{StaticResource MinorColumnDividers}" />
+                <RowDefinition Height="{StaticResource ButtonSize}" />
+                <RowDefinition Height="{StaticResource MinorColumnDividers}" />
+                <RowDefinition Height="{StaticResource ButtonSize}" />
+                <RowDefinition Height="{StaticResource MajorColumnDividers}" />
+                <RowDefinition Height="{StaticResource ButtonSize}" />
+                <RowDefinition Height="{StaticResource MinorColumnDividers}" />
+                <RowDefinition Height="{StaticResource ButtonSize}" />
+                <RowDefinition Height="{StaticResource MinorColumnDividers}" />
+                <RowDefinition Height="{StaticResource ButtonSize}" />
+                <RowDefinition Height="{StaticResource MajorColumnDividers}" />
+                <RowDefinition Height="{StaticResource ButtonSize}" />
+                <RowDefinition Height="{StaticResource MinorColumnDividers}" />
+                <RowDefinition Height="{StaticResource ButtonSize}" />
+                <RowDefinition Height="{StaticResource MinorColumnDividers}" />
+                <RowDefinition Height="{StaticResource ButtonSize}" />
+            </Grid.RowDefinitions>
+
+            <!-- Minor Grid Lines -->
+            <Rectangle Grid.Column="1" Grid.RowSpan="17" Style="{StaticResource MinorGridLine}" />
+            <Rectangle Grid.Column="3" Grid.RowSpan="17" Style="{StaticResource MinorGridLine}" />
+            <Rectangle Grid.Column="7" Grid.RowSpan="17" Style="{StaticResource MinorGridLine}" />
+            <Rectangle Grid.Column="9" Grid.RowSpan="17" Style="{StaticResource MinorGridLine}" />
+            <Rectangle Grid.Column="13" Grid.RowSpan="17" Style="{StaticResource MinorGridLine}" />
+            <Rectangle Grid.Column="15" Grid.RowSpan="17" Style="{StaticResource MinorGridLine}" />
+
+            <Rectangle Grid.Row="1" Grid.ColumnSpan="17" Style="{StaticResource MinorGridLine}" />
+            <Rectangle Grid.Row="3" Grid.ColumnSpan="17" Style="{StaticResource MinorGridLine}" />
+            <Rectangle Grid.Row="7" Grid.ColumnSpan="17" Style="{StaticResource MinorGridLine}" />
+            <Rectangle Grid.Row="9" Grid.ColumnSpan="17" Style="{StaticResource MinorGridLine}" />
+            <Rectangle Grid.Row="13" Grid.ColumnSpan="17" Style="{StaticResource MinorGridLine}" />
+            <Rectangle Grid.Row="15" Grid.ColumnSpan="17" Style="{StaticResource MinorGridLine}" />
+
+            <!-- Major Grid Lines -->
+            <Rectangle Grid.Column="5" Grid.RowSpan="17" Style="{StaticResource MajorGridLine}" />
+            <Rectangle Grid.Column="11" Grid.RowSpan="17" Style="{StaticResource MajorGridLine}" />
+
+            <Rectangle Grid.Row="5" Grid.ColumnSpan="17" Style="{StaticResource MajorGridLine}" />
+            <Rectangle Grid.Row="11" Grid.ColumnSpan="17" Style="{StaticResource MajorGridLine}" />
+
+            <local:CellView Grid.Column="0" Grid.Row="0" DataContext="{Binding CellViewModels[0]}" />
+            <local:CellView Grid.Column="2" Grid.Row="0" DataContext="{Binding CellViewModels[1]}" />
+            <local:CellView Grid.Column="4" Grid.Row="0" DataContext="{Binding CellViewModels[2]}" />
+            <local:CellView Grid.Column="6" Grid.Row="0" DataContext="{Binding CellViewModels[3]}" />
+            <local:CellView Grid.Column="8" Grid.Row="0" DataContext="{Binding CellViewModels[4]}" />
+            <local:CellView Grid.Column="10" Grid.Row="0" DataContext="{Binding CellViewModels[5]}" />
+            <local:CellView Grid.Column="12" Grid.Row="0" DataContext="{Binding CellViewModels[6]}" />
+            <local:CellView Grid.Column="14" Grid.Row="0" DataContext="{Binding CellViewModels[7]}" />
+            <local:CellView Grid.Column="16" Grid.Row="0" DataContext="{Binding CellViewModels[8]}" />
+
+            <local:CellView Grid.Column="0" Grid.Row="2" DataContext="{Binding CellViewModels[9]}" />
+            <local:CellView Grid.Column="2" Grid.Row="2" DataContext="{Binding CellViewModels[10]}" />
+            <local:CellView Grid.Column="4" Grid.Row="2" DataContext="{Binding CellViewModels[11]}" />
+            <local:CellView Grid.Column="6" Grid.Row="2" DataContext="{Binding CellViewModels[12]}" />
+            <local:CellView Grid.Column="8" Grid.Row="2" DataContext="{Binding CellViewModels[13]}" />
+            <local:CellView Grid.Column="10" Grid.Row="2" DataContext="{Binding CellViewModels[14]}" />
+            <local:CellView Grid.Column="12" Grid.Row="2" DataContext="{Binding CellViewModels[15]}" />
+            <local:CellView Grid.Column="14" Grid.Row="2" DataContext="{Binding CellViewModels[16]}" />
+            <local:CellView Grid.Column="16" Grid.Row="2" DataContext="{Binding CellViewModels[17]}" />
+
+            <local:CellView Grid.Column="0" Grid.Row="4" DataContext="{Binding CellViewModels[18]}" />
+            <local:CellView Grid.Column="2" Grid.Row="4" DataContext="{Binding CellViewModels[19]}" />
+            <local:CellView Grid.Column="4" Grid.Row="4" DataContext="{Binding CellViewModels[20]}" />
+            <local:CellView Grid.Column="6" Grid.Row="4" DataContext="{Binding CellViewModels[21]}" />
+            <local:CellView Grid.Column="8" Grid.Row="4" DataContext="{Binding CellViewModels[22]}" />
+            <local:CellView Grid.Column="10" Grid.Row="4" DataContext="{Binding CellViewModels[23]}" />
+            <local:CellView Grid.Column="12" Grid.Row="4" DataContext="{Binding CellViewModels[24]}" />
+            <local:CellView Grid.Column="14" Grid.Row="4" DataContext="{Binding CellViewModels[25]}" />
+            <local:CellView Grid.Column="16" Grid.Row="4" DataContext="{Binding CellViewModels[26]}" />
+
+            <local:CellView Grid.Column="0" Grid.Row="6" DataContext="{Binding CellViewModels[27]}" />
+            <local:CellView Grid.Column="2" Grid.Row="6" DataContext="{Binding CellViewModels[28]}" />
+            <local:CellView Grid.Column="4" Grid.Row="6" DataContext="{Binding CellViewModels[29]}" />
+            <local:CellView Grid.Column="6" Grid.Row="6" DataContext="{Binding CellViewModels[30]}" />
+            <local:CellView Grid.Column="8" Grid.Row="6" DataContext="{Binding CellViewModels[31]}" />
+            <local:CellView Grid.Column="10" Grid.Row="6" DataContext="{Binding CellViewModels[32]}" />
+            <local:CellView Grid.Column="12" Grid.Row="6" DataContext="{Binding CellViewModels[33]}" />
+            <local:CellView Grid.Column="14" Grid.Row="6" DataContext="{Binding CellViewModels[34]}" />
+            <local:CellView Grid.Column="16" Grid.Row="6" DataContext="{Binding CellViewModels[35]}" />
+
+            <local:CellView Grid.Column="0" Grid.Row="8" DataContext="{Binding CellViewModels[36]}" />
+            <local:CellView Grid.Column="2" Grid.Row="8" DataContext="{Binding CellViewModels[37]}" />
+            <local:CellView Grid.Column="4" Grid.Row="8" DataContext="{Binding CellViewModels[38]}" />
+            <local:CellView Grid.Column="6" Grid.Row="8" DataContext="{Binding CellViewModels[39]}" />
+            <local:CellView Grid.Column="8" Grid.Row="8" DataContext="{Binding CellViewModels[40]}" />
+            <local:CellView Grid.Column="10" Grid.Row="8" DataContext="{Binding CellViewModels[41]}" />
+            <local:CellView Grid.Column="12" Grid.Row="8" DataContext="{Binding CellViewModels[42]}" />
+            <local:CellView Grid.Column="14" Grid.Row="8" DataContext="{Binding CellViewModels[43]}" />
+            <local:CellView Grid.Column="16" Grid.Row="8" DataContext="{Binding CellViewModels[44]}" />
+
+            <local:CellView Grid.Column="0" Grid.Row="10" DataContext="{Binding CellViewModels[45]}" />
+            <local:CellView Grid.Column="2" Grid.Row="10" DataContext="{Binding CellViewModels[46]}" />
+            <local:CellView Grid.Column="4" Grid.Row="10" DataContext="{Binding CellViewModels[47]}" />
+            <local:CellView Grid.Column="6" Grid.Row="10" DataContext="{Binding CellViewModels[48]}" />
+            <local:CellView Grid.Column="8" Grid.Row="10" DataContext="{Binding CellViewModels[49]}" />
+            <local:CellView Grid.Column="10" Grid.Row="10" DataContext="{Binding CellViewModels[50]}" />
+            <local:CellView Grid.Column="12" Grid.Row="10" DataContext="{Binding CellViewModels[51]}" />
+            <local:CellView Grid.Column="14" Grid.Row="10" DataContext="{Binding CellViewModels[52]}" />
+            <local:CellView Grid.Column="16" Grid.Row="10" DataContext="{Binding CellViewModels[53]}" />
+
+            <local:CellView Grid.Column="0" Grid.Row="12" DataContext="{Binding CellViewModels[54]}" />
+            <local:CellView Grid.Column="2" Grid.Row="12" DataContext="{Binding CellViewModels[55]}" />
+            <local:CellView Grid.Column="4" Grid.Row="12" DataContext="{Binding CellViewModels[56]}" />
+            <local:CellView Grid.Column="6" Grid.Row="12" DataContext="{Binding CellViewModels[57]}" />
+            <local:CellView Grid.Column="8" Grid.Row="12" DataContext="{Binding CellViewModels[58]}" />
+            <local:CellView Grid.Column="10" Grid.Row="12" DataContext="{Binding CellViewModels[59]}" />
+            <local:CellView Grid.Column="12" Grid.Row="12" DataContext="{Binding CellViewModels[60]}" />
+            <local:CellView Grid.Column="14" Grid.Row="12" DataContext="{Binding CellViewModels[61]}" />
+            <local:CellView Grid.Column="16" Grid.Row="12" DataContext="{Binding CellViewModels[62]}" />
+
+            <local:CellView Grid.Column="0" Grid.Row="14" DataContext="{Binding CellViewModels[63]}" />
+            <local:CellView Grid.Column="2" Grid.Row="14" DataContext="{Binding CellViewModels[64]}" />
+            <local:CellView Grid.Column="4" Grid.Row="14" DataContext="{Binding CellViewModels[65]}" />
+            <local:CellView Grid.Column="6" Grid.Row="14" DataContext="{Binding CellViewModels[66]}" />
+            <local:CellView Grid.Column="8" Grid.Row="14" DataContext="{Binding CellViewModels[67]}" />
+            <local:CellView Grid.Column="10" Grid.Row="14" DataContext="{Binding CellViewModels[68]}" />
+            <local:CellView Grid.Column="12" Grid.Row="14" DataContext="{Binding CellViewModels[69]}" />
+            <local:CellView Grid.Column="14" Grid.Row="14" DataContext="{Binding CellViewModels[70]}" />
+            <local:CellView Grid.Column="16" Grid.Row="14" DataContext="{Binding CellViewModels[71]}" />
+
+            <local:CellView Grid.Column="0" Grid.Row="16" DataContext="{Binding CellViewModels[72]}" />
+            <local:CellView Grid.Column="2" Grid.Row="16" DataContext="{Binding CellViewModels[73]}" />
+            <local:CellView Grid.Column="4" Grid.Row="16" DataContext="{Binding CellViewModels[74]}" />
+            <local:CellView Grid.Column="6" Grid.Row="16" DataContext="{Binding CellViewModels[75]}" />
+            <local:CellView Grid.Column="8" Grid.Row="16" DataContext="{Binding CellViewModels[76]}" />
+            <local:CellView Grid.Column="10" Grid.Row="16" DataContext="{Binding CellViewModels[77]}" />
+            <local:CellView Grid.Column="12" Grid.Row="16" DataContext="{Binding CellViewModels[78]}" />
+            <local:CellView Grid.Column="14" Grid.Row="16" DataContext="{Binding CellViewModels[79]}" />
+            <local:CellView Grid.Column="16" Grid.Row="16" DataContext="{Binding CellViewModels[80]}" />
+        </Grid>
+        
+        <!-- Mode -->
+        <StackPanel Grid.Row="1" Margin="20">
+            <TextBlock Text="{Binding ActiveDigit}" Margin="0,0,10,0" />
+            <TextBlock Text="Pencil" Visibility="{Binding IsInPencilMode, Converter={StaticResource BooleanToVisibilityConverter}}" />
+        </StackPanel>
+    </Grid>
+</UserControl>

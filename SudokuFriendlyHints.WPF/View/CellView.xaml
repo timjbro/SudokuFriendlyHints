@@ -1,0 +1,48 @@
+﻿<UserControl x:Class="SudokuFriendlyHints.WPF.View.CellView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SudokuFriendlyHints.WPF.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="50" d:DesignWidth="50">
+    <UserControl.Resources>
+        <Style x:Key="PencilMarks" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="8" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+        </Style>
+    </UserControl.Resources>
+    <Button HorizontalContentAlignment="Stretch" VerticalAlignment="Stretch" BorderThickness="0" Background="White" Command="{Binding ClickCommand}">
+        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <!-- Digit -->
+            <TextBlock FontSize="30" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding Digit}"
+                       Visibility="{Binding HasDigit, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            
+            <!-- Pencil Marks -->
+            <Grid Visibility="{Binding HasDigit, Mode=OneWay, Converter={StaticResource InverseBooleanToVisibilityConverter}}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="1" Style="{StaticResource PencilMarks}" Visibility="{Binding PencilMarks[0].Value, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                <TextBlock Grid.Row="2" Grid.Column="1" Text="2" Style="{StaticResource PencilMarks}" Visibility="{Binding PencilMarks[1].Value, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                <TextBlock Grid.Row="2" Grid.Column="2" Text="3" Style="{StaticResource PencilMarks}" Visibility="{Binding PencilMarks[2].Value, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="4" Style="{StaticResource PencilMarks}" Visibility="{Binding PencilMarks[3].Value, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                <TextBlock Grid.Row="1" Grid.Column="1" Text="5" Style="{StaticResource PencilMarks}" Visibility="{Binding PencilMarks[4].Value, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                <TextBlock Grid.Row="1" Grid.Column="2" Text="6" Style="{StaticResource PencilMarks}" Visibility="{Binding PencilMarks[5].Value, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="7" Style="{StaticResource PencilMarks}" Visibility="{Binding PencilMarks[6].Value, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                <TextBlock Grid.Row="0" Grid.Column="1" Text="8" Style="{StaticResource PencilMarks}" Visibility="{Binding PencilMarks[7].Value, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                <TextBlock Grid.Row="0" Grid.Column="2" Text="9" Style="{StaticResource PencilMarks}" Visibility="{Binding PencilMarks[8].Value, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                
+            </Grid>
+        </Grid>
+    </Button>
+</UserControl>
