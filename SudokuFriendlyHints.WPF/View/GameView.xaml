@@ -31,7 +31,7 @@
             <TextBlock Text="{Binding ActiveDigit}" FontSize="20" Margin="0,0,10,0" />
             <TextBlock Text="Pencil" FontSize="20" Visibility="{Binding IsInPencilMode, Converter={StaticResource BooleanToVisibilityConverter}}" />
         </StackPanel>
-
+        
         <!-- Game -->
         <Grid Grid.Row="1" Margin="20">
             <Grid.ColumnDefinitions>

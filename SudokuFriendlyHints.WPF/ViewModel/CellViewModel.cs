@@ -9,8 +9,14 @@ namespace SudokuFriendlyHints.WPF.ViewModel
     {
         private readonly IGameInteractiveState _gameInteractiveState;
 
-        public CellViewModel(IGameInteractiveState gameInteractiveState)
+        public int X { get; }
+        public int Y { get; }
+
+        public CellViewModel(IGameInteractiveState gameInteractiveState, int x, int y)
         {
+            X = x;
+            Y = y;
+
             _gameInteractiveState = gameInteractiveState;
 
             for (int i = 0; i < 9; i++)
@@ -74,9 +80,15 @@ namespace SudokuFriendlyHints.WPF.ViewModel
                         else
                         {
                             if (Digit == _gameInteractiveState.ActiveDigit)
+                            {
                                 Digit = 0;
+                            }
                             else if (Digit == 0)
+                            {
                                 Digit = _gameInteractiveState.ActiveDigit;
+                                _gameInteractiveState.OnCellDigitSet(this);
+                            }
+
                         }
 
                         UpdateHighlight();
