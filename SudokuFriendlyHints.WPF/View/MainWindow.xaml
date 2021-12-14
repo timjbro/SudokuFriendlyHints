@@ -6,9 +6,10 @@
         xmlns:local="clr-namespace:SudokuFriendlyHints.WPF"
         mc:Ignorable="d"
         SizeToContent="WidthAndHeight"
+        KeyUp="GameView_KeyUp"
         ResizeMode="NoResize" Height="800" Width="800"        
         Title="Friendly Sudoku">
     <Grid>
-        <View:Game />
+        <View:Game DataContext="{Binding GameViewModel, Mode=OneTime}" />
     </Grid>
 </Window>

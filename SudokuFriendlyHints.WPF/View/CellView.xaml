@@ -7,29 +7,30 @@
              mc:Ignorable="d" 
              d:DesignHeight="50" d:DesignWidth="50">
     <UserControl.Resources>
+        <GridLength x:Key="PencilCellHeight">15</GridLength>
         <Style x:Key="PencilMarks" TargetType="TextBlock">
             <Setter Property="FontSize" Value="8" />
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="HorizontalAlignment" Value="Center" />
         </Style>
     </UserControl.Resources>
-    <Button HorizontalContentAlignment="Stretch" VerticalAlignment="Stretch" BorderThickness="0" Background="White" Command="{Binding ClickCommand}">
+    <Button HorizontalContentAlignment="Stretch" VerticalAlignment="Stretch" BorderThickness="0" Background="{Binding IsHighlighted, Converter={StaticResource BooleanToBrushConverter}, ConverterParameter=#00AAFF|White}" Command="{Binding ClickCommand}">
         <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <!-- Digit -->
             <TextBlock FontSize="30" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding Digit}"
                        Visibility="{Binding HasDigit, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"/>
             
             <!-- Pencil Marks -->
-            <Grid Visibility="{Binding HasDigit, Mode=OneWay, Converter={StaticResource InverseBooleanToVisibilityConverter}}">
+            <Grid Visibility="{Binding HasDigit, Mode=OneWay, Converter={StaticResource InverseBooleanToVisibilityConverter}}" VerticalAlignment="Center">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
+                    <RowDefinition Height="{StaticResource PencilCellHeight}" />
+                    <RowDefinition Height="{StaticResource PencilCellHeight}" />
+                    <RowDefinition Height="{StaticResource PencilCellHeight}" />
                 </Grid.RowDefinitions>
 
                 <TextBlock Grid.Row="2" Grid.Column="0" Text="1" Style="{StaticResource PencilMarks}" Visibility="{Binding PencilMarks[0].Value, Converter={StaticResource BooleanToVisibilityConverter}}" />

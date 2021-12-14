@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SudokuFriendlyHints.WPF.ViewModel
 {
-    class GameViewModel : ViewModelBase, IGameInteractiveState
+    public class GameViewModel : ViewModelBase, IGameInteractiveState
 	{
 		private const int gridDimention = 9;
 		private const int gridCellCount = gridDimention * gridDimention;
@@ -18,7 +18,9 @@ namespace SudokuFriendlyHints.WPF.ViewModel
 				CellViewModels[i] = new CellViewModel(this);
 		}
 
-		private int _ActiveDigit = 1;
+        #region User Input
+
+        private int _ActiveDigit = 1;
 		public int ActiveDigit
 		{
 			get => _ActiveDigit;
@@ -45,5 +47,15 @@ namespace SudokuFriendlyHints.WPF.ViewModel
 				OnPropertyChanged();
 			}
 		}
-    }
+
+		public void HighlightActiveDigits()
+		{
+			foreach (var cell in CellViewModels)
+			{
+				cell.UpdateHighlight();
+			}
+		}
+
+		#endregion
+	}
 }

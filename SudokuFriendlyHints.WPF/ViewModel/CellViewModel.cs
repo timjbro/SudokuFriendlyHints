@@ -17,8 +17,41 @@ namespace SudokuFriendlyHints.WPF.ViewModel
                 PencilMarks[i] = new ObservableBoolean();
         }
 
-        #region Pencil
+        #region Highlighting
 
+        private bool _IsHighlighted;
+        public bool IsHighlighted
+        {
+            get => _IsHighlighted;
+            set
+            {
+                if (_IsHighlighted == value)
+                    return;
+
+                _IsHighlighted = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public void UpdateHighlight()
+        {
+            if (Digit != 0)
+            {
+                IsHighlighted = _gameInteractiveState.ActiveDigit == Digit;
+            }
+            else
+            {
+                int pencilIndex = _gameInteractiveState.ActiveDigit - 1;
+                if (pencilIndex < 0 || pencilIndex >= PencilMarks.Length)
+                    return;
+
+                IsHighlighted = PencilMarks[pencilIndex].Value;
+            }
+        }
+
+        #endregion
+
+        #region Pencil
         public ObservableBoolean[] PencilMarks { get; } = new ObservableBoolean[9];
 
         private RelayCommand<object> _ClickCommand;
@@ -45,6 +78,8 @@ namespace SudokuFriendlyHints.WPF.ViewModel
                             else if (Digit == 0)
                                 Digit = _gameInteractiveState.ActiveDigit;
                         }
+
+                        UpdateHighlight();
                     });
                 }
 

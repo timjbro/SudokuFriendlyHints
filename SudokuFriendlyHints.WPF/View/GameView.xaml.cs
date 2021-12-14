@@ -22,27 +22,6 @@ namespace SudokuFriendlyHints.WPF.View
         public Game()
         {
             InitializeComponent();
-
-            DataContext = new GameViewModel();
-        }
-
-        private void UserControl_PreviewKeyUp(object sender, KeyEventArgs e)
-        {
-            var gameViewModel = DataContext as GameViewModel;
-            if (gameViewModel == null)
-                throw new ApplicationException($"{nameof(UserControl_PreviewKeyUp)}() datacontext was invalid.");
-
-            int digit = (int)e.Key - (int)Key.D0;
-            if (digit >= 1 && digit <= 9)
-            {
-                gameViewModel.ActiveDigit = digit;
-                e.Handled = true;
-            }
-            else if (e.Key == Key.P)
-            {
-                gameViewModel.IsInPencilMode = !gameViewModel.IsInPencilMode;
-                e.Handled = true;
-            }
         }
     }
 }

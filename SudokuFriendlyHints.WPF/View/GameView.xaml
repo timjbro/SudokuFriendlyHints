@@ -6,7 +6,6 @@
              xmlns:local="clr-namespace:SudokuFriendlyHints.WPF.View"
              mc:Ignorable="d" 
              Background="White"
-             KeyUp="UserControl_PreviewKeyUp"
              d:DesignHeight="800" d:DesignWidth="800">
     <UserControl.Resources>
         <GridLength x:Key="ButtonSize">50</GridLength>
@@ -26,9 +25,15 @@
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
-        
+
+        <!-- Mode -->
+        <StackPanel Margin="20" Orientation="Horizontal">
+            <TextBlock Text="{Binding ActiveDigit}" FontSize="20" Margin="0,0,10,0" />
+            <TextBlock Text="Pencil" FontSize="20" Visibility="{Binding IsInPencilMode, Converter={StaticResource BooleanToVisibilityConverter}}" />
+        </StackPanel>
+
         <!-- Game -->
-        <Grid Margin="20">
+        <Grid Grid.Row="1" Margin="20">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="{StaticResource ButtonSize}" />
                 <ColumnDefinition Width="{StaticResource MinorColumnDividers}" />
@@ -180,11 +185,5 @@
             <local:CellView Grid.Column="14" Grid.Row="16" DataContext="{Binding CellViewModels[79]}" />
             <local:CellView Grid.Column="16" Grid.Row="16" DataContext="{Binding CellViewModels[80]}" />
         </Grid>
-        
-        <!-- Mode -->
-        <StackPanel Grid.Row="1" Margin="20">
-            <TextBlock Text="{Binding ActiveDigit}" Margin="0,0,10,0" />
-            <TextBlock Text="Pencil" Visibility="{Binding IsInPencilMode, Converter={StaticResource BooleanToVisibilityConverter}}" />
-        </StackPanel>
     </Grid>
 </UserControl>
